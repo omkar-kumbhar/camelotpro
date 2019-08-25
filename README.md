@@ -26,11 +26,7 @@ Please follow the **OS-specific instructions**
 ### Using pip  
 After  for Camelot, you can simply use pip to install CamelotPro:  
   
-
     $ pip install CamelotPro  
-   or 
-
-    $ pip install https://github.com/extracttable/camelotpro.git
 
 or  
   
@@ -89,7 +85,7 @@ If the `JobStatus` status is "Success", just like Camelot, the output gives the 
     [Out]: <TableList n=1>                                # Will be <TableList n=0> for any other JobStatus
 
    
->***ProTip**: Very useful to check out all attributes of the output, **when the **`JobStatus` is **not "Success"**.
+>***ProTip**: Very useful to check out all attributes of the output, when the `JobStatus` is **not "Success"**.
 
     pro_tables.__dict__
 
@@ -101,7 +97,7 @@ If the `JobStatus` status is "Success", just like Camelot, the output gives the 
     }
 
 
-Most of the image file processes result in an instant 'Success' job status, at times, a blurry/big/bad file may take ~15 seconds and PDF file process time depends on the page count. In these cases, the `JobStatus` is **"Processing"** and the `JobId` attribute of the output is used to retrieve tables as shown below.
+Most of the image file processes result in an instant 'Success' job status, at times, a blurry/big/bad file may take ~15 seconds and PDF file process time depends on the page count. In these cases, the `JobStatus` is **"Processing"** and the `JobId` attribute of the output is used to retrieve tables as shown below.
 
 
     pro_tables.JobStatus
