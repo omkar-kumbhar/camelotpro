@@ -1,0 +1,12 @@
+# Default ignored files
+/workspace.xml
+/inspectionProfiles/profiles_settings.xml
+/$CACHE_FILE$
+/CamelotPro.iml
+/misc.xml
+/modules.xml
+/vcs.xml
+
+build/
+CamelotPro.egg-info/
+dist/
