@@ -1,0 +1,4 @@
+camelot-py[cv] >= 0.7.3
+PyPDF2
+requests
+pandas
