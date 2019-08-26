@@ -37,7 +37,7 @@ or
 
 ## Prerequisites
 
-The developer needs an **api_key** ([250 free credits here](https://extracttable.com/camelotpro.html)) to use CamelotPro. Each Image file or one PDF page consumes one credit to trigger the process.
+The developer needs an **api_key** ([free credits here](https://extracttable.com/camelotpro.html)) to use CamelotPro. Each Image file or one PDF page consumes one credit to trigger the process.
 
 **api_key** should be passed through `pro_kwargs`, a `dict` type argument that accepts *api_key*, *job_id*, *dup_check*, *wait_time* as keys, can be used as below
 
