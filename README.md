@@ -175,3 +175,8 @@ Pull requests are most welcome and greatly appreciated.
 ## License  
   
 This project is licensed under the GNU-3.0 License, see the [LICENSE](https://github.com/extracttable/camelotpro/blob/master/LICENSE) file for details.
+
+
+## Credits
+
+Last but not least, we want to be thankful to the contributors of [camelot-py](https://github.com/atlanhq/camelot/)
