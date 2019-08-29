@@ -66,7 +66,7 @@ def read_pdf(
         else:
             gp_resp = gone_pro.get_tables(pro_kwargs["job_id"])
 
-        if not gp_resp["JobStatus"].lower().startswith("succe") and pro_kwargs.get("wait_time", 0):
+        if gp_resp["JobStatus"].lower().startswith("process") and pro_kwargs.get("wait_time", 0):
             wait_time = min(int(pro_kwargs["wait_time"]), 90)
             check_freq = max(math.ceil(wait_time/4), 10)
             for _ in range(math.ceil(wait_time/check_freq)):
