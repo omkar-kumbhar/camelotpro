@@ -70,7 +70,7 @@ The example image (*foo_image.**jpg***)  used in the code below, can be found [h
   
     from camelot_pro import read_pdf
     api_key = "YOUR_API_KEY_HERE"
-    pro_tables = read_pdf('foo-image.jpg', flavor="CamelotPro", pro_kwargs={'api_key': api_key})  
+    pro_tables = read_pdf('foo-image.jpg', flavor="CamelotPro", pro_kwargs={'api_key': api_key, 'dup_check': False})  
 
 
 Now that you have triggered the process to find tables from the image, you can find the status of it from the  `JobStatus` attribute, which returns any of *Success, Failed, Processing, Incomplete*.
