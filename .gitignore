@@ -10,3 +10,4 @@
 build/
 CamelotPro.egg-info/
 dist/
+/.ipynb_checkpoints/
