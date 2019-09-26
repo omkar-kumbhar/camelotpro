@@ -203,11 +203,21 @@ def table_list(gp_response):
     """
     prev_page = 0
     order = 1
-    if gp_response["JobStatus"].lower().startswith("fail"):
+    if gp_response["JobStatus"].lower().startswith("succe"):
+        pass
+    elif gp_response["JobStatus"].lower().startswith("process"):
+        print("-=- "*15)
+        print(f'[Info]: Table Extraction process is {gp_response["JobStatus"]}')
+        print("Check more info using '__dict__' descriptor on the result object.")
+        print("Use the 'JobId' from the response, to check and retrieve the output when the 'Processing' is 'Success'")
+        print("JobId is:", gp_response["JobId"])
+        print("Follow the last step in link: "
+              "https://github.com/ExtractTable/camelotpro/blob/master/how%20to%20code.ipynb")
+        print("-=- "*15)
+    elif gp_response["JobStatus"].lower().startswith("fail"):
         print("[Info]: Table Extraction is Failed. Complete Response Below")
         for k, v in gp_response.items():
             print(f"{k}: {v}")
-
     elif not any([gp_response["JobStatus"].lower().startswith("succe"), gp_response.get("Tables", [])]):
         print("[Info]: Table Extraction is not completed. Status:", gp_response["JobStatus"])
         print("Check more info using '__dict__' descriptor on the result object.\n")
