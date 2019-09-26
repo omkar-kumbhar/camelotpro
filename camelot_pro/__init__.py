@@ -36,9 +36,9 @@ def read_pdf(
                     optional, if processing a new file
                     Mandatory, to retrieve the result of already submitted file
 
-                "dup_check": bool, default: True
+                "dup_check": bool, default: false - to bypass the duplicate check
                     Useful to handle duplicate requests, check based on the FileName
-                    False, to bypass the duplicate check
+
 
                 "wait_time": int, in seconds [10, 90]
                     Maximum wait time, in seconds, before the process exits as an output.
@@ -62,7 +62,7 @@ def read_pdf(
         going_pro = GoPro(pro_kwargs.get("api_key", ""))
         gone_pro = going_pro.validate_api_key()
         if not pro_kwargs.get("job_id", ""):
-            gp_resp = gone_pro.trigger(filepath, pages, password=password, dup_check=pro_kwargs.get("dup_check", True))
+            gp_resp = gone_pro.trigger(filepath, pages, password=password, dup_check=pro_kwargs.get("dup_check", False))
         else:
             gp_resp = gone_pro.get_tables(pro_kwargs["job_id"])
 
