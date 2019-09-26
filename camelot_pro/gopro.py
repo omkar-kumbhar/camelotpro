@@ -4,6 +4,7 @@ To Prepare and send a request to the Pro version, subsequently receive the respo
 import re
 import requests
 
+from .BugBounty import HandleResponse
 from .handlers import PDFSpliter
 from .helpers import *
 
@@ -56,8 +57,11 @@ class GoPro(object):
                 with open(pdf_obj.filepath, 'rb') as infile:
                     files = {'input': infile}
                     data = {"dup_check": dup_check, "sure_shot": sure_shot}
-                    triggered = requests.post(trigger_url, files=files, data=data, headers=self.headers).json()
-            return triggered
+                    triggered = requests.post(trigger_url, files=files, data=data, headers=self.headers)
+                    HandleResponse(triggered)
+            return triggered.json()
 
     def get_tables(self, job_id):
-        return requests.get(job_info_url, params={"JobId": job_id}, headers=self.headers).json()
+        retreive = requests.get(job_info_url, params={"JobId": job_id}, headers=self.headers)
+        HandleResponse(retreive)
+        return retreive.json()
