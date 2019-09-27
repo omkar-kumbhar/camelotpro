@@ -1,4 +1,5 @@
 # CamelotPro: Pro-version of [Camelot](https://github.com/atlanhq/camelot)  
+**Latest verions: 0.7.3.2**
   
 [![image](https://img.shields.io/github/license/extracttable/camelotpro)]() [![image](https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7-blue)]()  
   
@@ -26,7 +27,7 @@ Please follow the **OS-specific instructions**
 ### Using pip  
 After  for Camelot, you can simply use pip to install CamelotPro:  
   
-    $ pip install CamelotPro  
+    $ pip install -U CamelotPro  
 
 or  
   
@@ -47,9 +48,8 @@ The developer needs an **api_key** ([free credits here](https://extracttable.com
         "job_id": str,
             optional, if processing a new file
             Mandatory, to retrieve the result of the already submitted file
-        "dup_check": bool, default: True
+        "dup_check": bool, default: False
             Useful to handle duplicate requests, check based on the FileName
-            False, to bypass the duplicate check
         "wait_time": int, in seconds [10, 90]
             Maximum wait time, in seconds, before the process exits as an output.
             Adds a wait time at the client-side to retry for a maximum of 4 times,
