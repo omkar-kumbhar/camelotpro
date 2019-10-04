@@ -1,5 +1,5 @@
 # CamelotPro: Pro-version of [Camelot](https://github.com/atlanhq/camelot)  
-**Latest verions: 0.7.3.2**
+**Latest verions: 0.7.4**
   
 [![image](https://img.shields.io/github/license/extracttable/camelotpro)]() [![image](https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7-blue)]()  
   
@@ -40,7 +40,7 @@ or
 
 The developer needs an **api_key** ([free credits here](https://extracttable.com/camelotpro.html)) to use CamelotPro. Each Image file or one PDF page consumes one credit to trigger the process.
 
-**api_key** should be passed through `pro_kwargs`, a `dict` type argument that accepts *api_key*, *job_id*, *dup_check*, *wait_time* as keys, can be used as below
+**api_key** should be passed through `pro_kwargs`, a `dict` type argument that accepts *api_key*, *job_id*, *dup_check*, *wait_for_output* as keys, can be used as below
 
     {
         "api_key": str,
@@ -50,11 +50,10 @@ The developer needs an **api_key** ([free credits here](https://extracttable.com
             Mandatory, to retrieve the result of the already submitted file
         "dup_check": bool, default: False
             Useful to handle duplicate requests, check based on the FileName
-        "wait_time": int, in seconds [10, 90]
-            Maximum wait time, in seconds, before the process exits as an output.
-            Adds a wait time at the client-side to retry for a maximum of 4 times,
-            with at least 10 second gap in between retries
-                - If the process is successful before the 4 retries, the process will return the output
+        "wait_for_output": bool, default: True
+            Loops and check for the output for a maximum of 300 seconds, before the process exits as an output.
+            with 20 second gap in between retries
+                - If the process will return the output before 300 seconds, when the processing is successful
                 - Alternatively, a big file process can always be tracked using the ".JobId" from the output
     }
 
