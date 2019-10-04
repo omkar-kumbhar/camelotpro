@@ -36,15 +36,13 @@ def read_pdf(
                     optional, if processing a new file
                     Mandatory, to retrieve the result of already submitted file
 
-                "dup_check": bool, default: false - to bypass the duplicate check
+                "dup_check": bool, default: False - to bypass the duplicate check
                     Useful to handle duplicate requests, check based on the FileName
 
-
-                "wait_time": int, in seconds [10, 90]
-                    Maximum wait time, in seconds, before the process exits as an output.
-                    Adds a wait time at the client-side to retry for a maximum of 4 times,
-                    with at least 10 second gap in between retries
-                        - If the process is successful before the 4 retries, the process will return the output
+                "wait_for_output": bool, default: True
+                    Loops and check for the output for a maximum of 300 seconds, before the process exits as an output.
+                    with 20 second gap in between retries
+                        - If the process will return the output before 300 seconds, when the processing is successful
                         - Alternatively, a big file process can always be tracked using the ".JobId" from the output
             }
         )
@@ -66,14 +64,17 @@ def read_pdf(
         else:
             gp_resp = gone_pro.get_tables(pro_kwargs["job_id"])
 
-        if gp_resp["JobStatus"].lower().startswith("process") and pro_kwargs.get("wait_time", 0):
-            wait_time = min(int(pro_kwargs["wait_time"]), 90)
-            check_freq = max(math.ceil(wait_time/4), 10)
-            for _ in range(math.ceil(wait_time/check_freq)):
+        # Added default wait time, because early users are confused of no output
+        pro_kwargs["wait_for_output"] = pro_kwargs.get("wait_for_output", True)
+
+        if gp_resp["JobStatus"].lower().startswith("process") and pro_kwargs["wait_for_output"]:
+            max_wait = 300
+            check_freq = 20
+            while max_wait > 0 and gp_resp["JobStatus"].lower().startswith("process"):
+                print(f'[Info]: Please wait, the Job is: {gp_resp["JobStatus"]} ..')
+                max_wait -= check_freq
                 time.sleep(check_freq)
                 gp_resp = gone_pro.get_tables(job_id=gp_resp["JobId"])
-                if gp_resp["JobStatus"].lower().endswith("succes"):
-                    break
         tables = table_list(gp_resp)
     else:
         from camelot.io import read_pdf

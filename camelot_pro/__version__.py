@@ -1,6 +1,6 @@
-VERSION = (0, 7, 3)
+VERSION = (0, 7, 4)
 PRERELEASE = None  # "alpha", "beta" or "rc"
-REVISION = 2
+REVISION = None
 
 
 def generate_version(version, prerelease=None, revision=None):
