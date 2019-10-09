@@ -1,6 +1,6 @@
 [![image](https://i.imgur.com/YIHmXue.png?1)](https://extracttable.com?ref=github-CP)
 
-# CamelotPro: Pro-version of [Camelot](https://github.com/atlanhq/camelot)  
+# CamelotPro: Pro-version of Camelot  
 **Latest verions: 0.7.4** [![image](https://img.shields.io/github/license/extracttable/camelotpro)]() [![image](https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7-blue)]()  
   
 **CamelotPro** is a layer on camelot-py library to extract tables from **Scan PDFs and Images**. 
