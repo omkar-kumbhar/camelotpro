@@ -1,9 +1,9 @@
+[![image](https://i.imgur.com/YIHmXue.png?1)](https://extracttable.com?ref=github-CP)
+
 # CamelotPro: Pro-version of [Camelot](https://github.com/atlanhq/camelot)  
-**Latest verions: 0.7.4**
+**Latest verions: 0.7.4** [![image](https://img.shields.io/github/license/extracttable/camelotpro)]() [![image](https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7-blue)]()  
   
-[![image](https://img.shields.io/github/license/extracttable/camelotpro)]() [![image](https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7-blue)]()  
-  
-**CamelotPro** is a layer on [camelot-py](https://github.com/atlanhq/camelot) library to extract tables from **Scan PDFs and Images**. 
+**CamelotPro** is a layer on camelot-py library to extract tables from **Scan PDFs and Images**. 
 
 
 ## CamelotPro vs Camelot
@@ -12,6 +12,8 @@
 
 
 ## Installation  
+> 💡 ***ProTip**: [ExtractTable-py](https://github.com/ExtractTable/ExtractTable-py) is the official library, which is FASTER than Camelot wrapper, has NO software dependencies.* 
+
 
 As the library itself is dependent on Camelot which has software dependencies, the developer is expected to install them *(listed below)*, to use the regular Camelot flavors *("stream", "lattice")* along with "CamelotPro".  
 
@@ -20,8 +22,6 @@ Please follow the **OS-specific instructions**
 -  [Tkinter](https://camelot-py.readthedocs.io/en/master/user/install-deps.html#os-specific-instructions)
 - [GhostScript](https://camelot-py.readthedocs.io/en/master/user/install-deps.html#for-ghostscript) 
 
-
->***ProTip**: Ignore the dependencies above, if you choose to extract tables from Images, Scan PDFs, text PDFs with CamelotPro* 
 
 
 ### Using pip  
