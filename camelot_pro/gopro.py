@@ -11,6 +11,7 @@ from .helpers import *
 
 class GoPro(object):
     def __init__(self, api_key):
+        """API Key received from extracttable.com"""
         self.api_key = api_key
         self.basic_validation()
         self.headers = {"x-api-key": self.api_key}
@@ -27,10 +28,10 @@ class GoPro(object):
     def validate_api_key(self):
         valid = requests.get(validate_api_key_url, headers=self.headers)
         if not valid:
-            print("#-# "*12)
+            print("#-# " * 12)
             for k, v in valid.json().items():
                 print(k, ":", v)
-            print("#-#"*12)
+            print("#-#" * 12)
             raise ValueError(valid.json()["Message"])
 
         self.api_usage = valid.json()['usage']
@@ -51,17 +52,31 @@ class GoPro(object):
 
         return self
 
-    def trigger(self, filepath, pages, password="", dup_check=True, sure_shot=False):
-        if self.validate_api_key():
-            with PDFSpliter(filepath, pages, password) as pdf_obj:
-                with open(pdf_obj.filepath, 'rb') as infile:
-                    files = {'input': infile}
-                    data = {"dup_check": dup_check, "sure_shot": sure_shot}
-                    triggered = requests.post(trigger_url, files=files, data=data, headers=self.headers)
-                    HandleResponse(triggered)
-            return triggered.json()
+    def trigger(self, filepath, pages, password: str = "", dup_check: bool = False) -> dict:
+        """
+        Trigger the file to the server for table extraction process
+        :param filepath: location of the input file
+        :param pages: str, optional (default: '1')
+            Comma-separated page numbers.
+            Example: '1,3,4' or '1,4-end' or 'all'.
+        :param password : str, optional (default: None)
+            Password for decryption
+        :param dup_check: to handle idempotent requests; default to False
+        :return:
+        """
+        with PDFSpliter(filepath, pages, password) as pdf_obj:
+            with open(pdf_obj.filepath, 'rb') as infile:
+                files = {'input': infile}
+                data = {"dup_check": dup_check}
+                triggered = requests.post(trigger_url, files=files, data=data, headers=self.headers)
+                HandleResponse(triggered)
+        return triggered.json()
 
-    def get_tables(self, job_id):
+    def get_tables(self, job_id: str) -> dict:
+        """
+        Retrieve the job result from the endpoint
+        :param: job_id: JobId from the Triggered response
+        """
         retreive = requests.get(job_info_url, params={"JobId": job_id}, headers=self.headers)
         HandleResponse(retreive)
         return retreive.json()
